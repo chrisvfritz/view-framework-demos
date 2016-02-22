@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todos</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
+  </head>
+  <body>
+
+    <!-- CONTAINER -->
+    <div id="app"></div>
+
+    <script type="text/babel">
+      var App = React.createClass({
+        // STATE
+        getInitialState: function () {
+          return {
+            newTodoText: '',
+            todos: []
+          }
+        },
+
+        // RENDERING
+        render: function () {
+          return (
+            <div>
+              <input
+                type="text"
+                value={this.state.newTodoText}
+                onChange={this.updateNewTodoText}
+                onKeyUp={this.addTodo}
+              />
+              <ul>
+                {
+                  this.state.todos.map(function (todo, index) {
+                    return (
+                      <li>
+                        <span>{ todo.text }</span>
+                        <button
+                          data-index={index}
+                          onClick={this.removeTodo}
+                        >X</button>
+                      </li>
+                    )
+                  }.bind(this))
+                }
+              </ul>
+            </div>
+          )
+        },
+
+        // HELPERS
+        updateNewTodoText: function (event) {
+          this.setState({
+            newTodoText: event.target.value
+          })
+        },
+        addTodo: function (event) {
+          if (event.which === 13 && this.state.newTodoText) {
+            this.setState({
+              todos: this.state.todos.concat([{
+                text: this.state.newTodoText
+              }]),
+              newTodoText: ''
+            })
+          }
+        },
+        removeTodo: function (event) {
+          var indexToRemove = parseInt(event.target.dataset.index)
+          this.setState({
+            todos: this.state.todos.filter(function (_, todoIndex) {
+              return todoIndex !== indexToRemove
+            })
+          })
+        }
+      })
+
+      // MOUNTING
+      ReactDOM.render(
+        <App/>,
+        document.getElementById('app')
+      )
+    </script>
+
+  </body>
+</html>
