@@ -1,6 +1,6 @@
 # View framework demos
 
-Super simple, single-file (as in `index.html`) todo apps to judge the ease of getting start with various view libraries. That means:
+Super simple single-file (as in `index.html`) todo apps to judge the ease of getting start with various view libraries. That means:
 
 - Just ES5 JavaScript (no Babel or other transpile-to-JS languages)
 - no Webpack or other build tools
