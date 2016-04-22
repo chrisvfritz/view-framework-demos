@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Todos</title>
     <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
   </head>
   <body>
 
-    <!-- CONTAINER -->
-    <div id="app">
-
-      <!-- RENDERING -->
-      <input type="text" v-model="newTodoText" @keyup.enter="addTodo">
-      <ul>
-        <li v-for="todo in todos">
-          <span>{{ todo.text }}</span>
-          <button @click="removeTodo($index)">X</button>
-        </li>
-      </ul>
-
-    </div>
+    <!-- RENDERING -->
+    <input type="text" v-model="newTodoText" @keyup.enter="addTodo">
+    <ul>
+      <li v-for="todo in todos">
+        <span>{{ todo.text }}</span>
+        <button @click="removeTodo($index)">X</button>
+      </li>
+    </ul>
 
     <script>
       new Vue({
         // MOUNTING
-        el: '#app',
+        el: 'body',
 
         // STATE
         data: {
